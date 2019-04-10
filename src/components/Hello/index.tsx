@@ -1,5 +1,8 @@
 import * as React from 'react';
 import './index.css';
+import { Button } from 'antd';
+
+
 export interface Props {
     name: string;
     enthusiasmLevel?: number;
@@ -35,10 +38,11 @@ class Hello extends React.Component<Props, State> {// <a,b>定义props的类型�
                     Hello {name + getExclamationMarks(enthusiasmLevel)}
                 </div>
                 <div>
-                    <button onClick={onDecrement}>-</button>
-                    <button onClick={onIncrement}>+</button>
-                    <button onClick={onUp}>up</button>
-                    <button onClick={onDown}>down</button>
+                    <Button type="primary">Button</Button>
+                    <button className={'haha'} onClick={onDecrement}>-</button>
+                    <button className={'haha'} onClick={onIncrement}>+</button>
+                    <button className={'haha'} onClick={onUp}>up</button>
+                    <button className={'haha'} onClick={onDown}>down</button>
                 </div>
             </div>
         );
