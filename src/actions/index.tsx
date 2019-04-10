@@ -20,6 +20,7 @@ export interface TestDown {
 export type EnthusiasmAction = IncrementEnthusiasm | DecrementEnthusiasm;
 export type TestAction = TestUp | TestDown;
 
+
 export function incrementEnthusiasm(): IncrementEnthusiasm {
     return {
         type: constants.INCREMENT_ENTHUSIASM
@@ -31,13 +32,13 @@ export function decrementEnthusiasm(): DecrementEnthusiasm {
         type: constants.DECREMENT_ENTHUSIASM
     }
 }
-export function TestUp(): TestAction {
+export function testUp(): TestAction {
     return {
         type: constants.TEST_UP
     }
 }
 
-export function TestDown(): TestAction {
+export function testDown(): TestAction {
     return {
         type: constants.TEST_DOWN
     }

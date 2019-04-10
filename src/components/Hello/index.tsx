@@ -8,8 +8,20 @@ export interface Props {
     onUp?: () => void;
     onDown?: () => void;
 }
+interface State {
+    selectedCount?: number;
+    selectedMoney?: number;
+}
 
-class Hello extends React.Component<Props, object> {
+class Hello extends React.Component<Props, State> {// <a,b>定义props的类型（由父组件传入），b为this.state的接口定义其类型
+    constructor(props:any) {
+        super(props);
+        console.log('component props:',props)
+        this.state = {
+            selectedCount: 0,
+            selectedMoney: 0,
+        };
+    }
     render() {
         const {name, enthusiasmLevel = 1,onIncrement,onDecrement,onUp,onDown} = this.props;
         // console.log(this.props,'props');
