@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './index.css';
-import { Button } from 'antd';
+// import { Button } from 'antd-mobile';
+import { Button } from 'antd-mobile';
 
 
 export interface Props {
@@ -38,7 +39,7 @@ class Hello extends React.Component<Props, State> {// <a,b>定义props的类型�
                     Hello {name + getExclamationMarks(enthusiasmLevel)}
                 </div>
                 <div>
-                    <Button type="primary">Button</Button>
+                    <Button type="ghost">small</Button>
                     <button className={'haha'} onClick={onDecrement}>-</button>
                     <button className={'haha'} onClick={onIncrement}>+</button>
                     <button className={'haha'} onClick={onUp}>up</button>
