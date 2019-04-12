@@ -1,17 +1,22 @@
 import * as React from 'react'
-// import {Route,Link,Switch} from 'react-router'
-// import {HashRouter, Switch} from 'react-router-dom'
+import {Route} from 'react-router'
+import FriendList from '../components/chat/friendList'
+import ChatPage from '../components/chat/chatPage'
+import Chat from '../components/chat'
 
 
-class Chat extends React.Component {
+class ChatWrapper extends React.Component {
     render() {
         return (
             <div className="row">
-                好友聊天列表
+                <Chat/>
+                <div>
+                    <Route path={`/chat/friendList`} component={FriendList} />
+                    <Route path={`/chat/chatPage`} component={ChatPage} />
+                </div>
             </div>
-
         );
     }
 }
 
-export default Chat
+export default ChatWrapper

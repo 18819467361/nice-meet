@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {Route, Redirect} from 'react-router'
-import {HashRouter, Switch} from 'react-router-dom'
+import {BrowserRouter, Switch} from 'react-router-dom'
 import Hello from '../containers/Hello';
 
 
@@ -15,7 +15,7 @@ class App extends React.Component {
     }
     render() {
         return (
-            <HashRouter>
+            <BrowserRouter>
                 <Hello/>
                 <div>
                     <Route exact={true} path="/" render={this.redirect}/>
@@ -26,7 +26,7 @@ class App extends React.Component {
                         <Route path="/userCenter" component={UserCenter}/>
                     </Switch>
                 </div>
-            </HashRouter>
+            </BrowserRouter>
         );
     }
 }

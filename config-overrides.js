@@ -14,9 +14,8 @@ module.exports = function override(config, env) {
     tsLoader.options = {
         getCustomTransformers: () => ({
             before: [ tsImportPluginFactory({
-                libraryDirectory: 'es',
-                libraryName: 'antd-moblie',
-                style: 'css',
+                libraryName: 'antd-mobile',
+                style: 'css'
             }) ]
         })
     };
