@@ -1,13 +1,13 @@
 import * as React from 'react';
 import './index.css';
 import { TabBar } from 'antd-mobile';
+// import * as actions from "../../../actions/footer";
+import {connect} from "react-redux";
 export interface Props {
     name?: string;
+    footerIndex?:string;
     enthusiasmLevel?: number;
-    onIncrement?: () => void;
-    onDecrement?: () => void;
-    onUp?: () => void;
-    onDown?: () => void;
+    setFooterIndex?: () => void;
 }
 interface State {
     selectedTab?: string;
@@ -22,11 +22,8 @@ class FooterBar extends React.Component<Props,State> {
             hidden: false,
         };
     }
-    changePage(e:any){
-        e.preventDefault();
-        this.setState({
-            hidden: !this.state.hidden,
-        });
+    changePage(){
+        console.log(123)
     }
 
     renderContent(pageText:any) {
@@ -34,7 +31,6 @@ class FooterBar extends React.Component<Props,State> {
             <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
                 <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
                 <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
-                   onClick={this.changePage}
                 >
                     Click to show/hide tab-bar
                 </a>
@@ -43,8 +39,9 @@ class FooterBar extends React.Component<Props,State> {
     }
 
     render() {
+        // const {setFooterIndex,footerIndex} = this.props;
         return (
-            <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
+            <div style={{ position: 'fixed', width: '100%', bottom: 0 }}>
                 <TabBar
                     unselectedTintColor="#949494"
                     tintColor="#33A3F4"
@@ -70,11 +67,7 @@ class FooterBar extends React.Component<Props,State> {
                         }
                         selected={this.state.selectedTab === 'blueTab'}
                         badge={1}
-                        // onPress={() => {
-                        //     this.setState({
-                        //         selectedTab: 'blueTab',
-                        //     });
-                        // }}
+                        onPress={this.changePage}
                         data-seed="logId"
                     />
 
@@ -98,11 +91,7 @@ class FooterBar extends React.Component<Props,State> {
                         key="Koubei"
                         badge={'new'}
                         selected={this.state.selectedTab === 'redTab'}
-                        // onPress={() => {
-                        //     this.setState({
-                        //         selectedTab: 'redTab',
-                        //     });
-                        // }}
+                        onPress={this.changePage}
                         data-seed="logId1"
                     >
                         {this.renderContent('Koubei')}
@@ -126,11 +115,7 @@ class FooterBar extends React.Component<Props,State> {
                         key="Friend"
                         dot={true}
                         selected={this.state.selectedTab === 'greenTab'}
-                        // onPress={() => {
-                        //     this.setState({
-                        //         selectedTab: 'greenTab',
-                        //     });
-                        // }}
+                        onPress={this.changePage}
                     >
                         {this.renderContent('Friend')}
                     </TabBar.Item>
@@ -140,11 +125,7 @@ class FooterBar extends React.Component<Props,State> {
                         title="My"
                         key="my"
                         selected={this.state.selectedTab === 'yellowTab'}
-                        // onPress={() => {
-                        //     this.setState({
-                        //         selectedTab: 'yellowTab',
-                        //     });
-                        // }}
+                        onPress={this.changePage}
                     >
                         {this.renderContent('My')}
                     </TabBar.Item>
@@ -153,6 +134,16 @@ class FooterBar extends React.Component<Props,State> {
         );
     }
 }
+export function mapStateToProps(store:any) {
+    return {
+        footerIndex:store.footer.footerIndex,
+    }
+}
+export function mapDispatchToProps(dispatch: any) {
+    return {
+        // setFooterIndex: () => dispatch(actions.changeFooterIndex()),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(FooterBar);
 
-export default FooterBar;
 

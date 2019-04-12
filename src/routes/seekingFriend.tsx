@@ -1,14 +1,25 @@
 import * as React from 'react'
-// import {Route,Link,Switch} from 'react-router'
-// import {HashRouter, Switch} from 'react-router-dom'
 import Footer from '../components/common/Footer'
+import {Route} from 'react-router'
+import SeekingFriend from '../components/seekingFriend'
+import Seeking from '../components/seekingFriend/seek'
+import Release from '../components/seekingFriend/release'
+import {RouterInterface} from "../constants/routeInterFace";
 
+export interface Props extends RouterInterface{
+    test?: string
+}
 
-class SeekingFriend extends React.Component {
+class SeekingFriendWrapper extends React.Component<Props,any> {
     render() {
+        const {match} = this.props;
         return (
             <div className="row">
-                遇见好友
+                <SeekingFriend/>
+                <div>
+                    <Route path={`${match.url}/release`} component={Release} />
+                    <Route path={`${match.url}/seeking`} component={Seeking} />
+                </div>
                 <Footer/>
             </div>
 
@@ -16,4 +27,4 @@ class SeekingFriend extends React.Component {
     }
 }
 
-export default SeekingFriend
+export default SeekingFriendWrapper

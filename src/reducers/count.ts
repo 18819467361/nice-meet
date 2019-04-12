@@ -1,5 +1,5 @@
 import {EnthusiasmAction} from '../actions';
-import {INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM} from '../constants';
+import {INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM} from '../constants/index';
 
 const initialState = {
     languageName: 'wow',

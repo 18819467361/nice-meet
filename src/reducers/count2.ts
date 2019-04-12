@@ -1,5 +1,5 @@
 import {TestAction} from '../actions';
-import {TEST_UP,TEST_DOWN} from '../constants';
+import {TEST_UP,TEST_DOWN} from '../constants/index';
 
 const initialState = {
     languageName: 'wow333',

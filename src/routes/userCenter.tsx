@@ -1,17 +1,27 @@
 import * as React from 'react'
-// import {Route,Link,Switch} from 'react-router'
-// import {HashRouter, Switch} from 'react-router-dom'
+import {Route} from 'react-router'
+import UserFunction from '../components/userCenter/userFunction'
+import UserBaseInfo from '../components/userCenter/userBaseInfo'
+import UserCenter from '../components/userCenter'
+import {RouterInterface} from "../constants/routeInterFace";
 
+export interface Props extends RouterInterface{
+    test?: string
+}
 
-class UserCenter extends React.Component {
+class UserCenterWrapper extends React.Component<Props,any> {
     render() {
+        const {match} = this.props;
         return (
             <div className="row">
-                用户中心
+                <UserCenter/>
+                <div>
+                    <Route path={`${match.url}/friendList`} component={UserFunction} />
+                    <Route path={`${match.url}/userBaseInfo`} component={UserBaseInfo} />
+                </div>
             </div>
-
         );
     }
 }
 
-export default UserCenter
+export default UserCenterWrapper
