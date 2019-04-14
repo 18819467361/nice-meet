@@ -1,6 +1,6 @@
 import reducer from '../reducers/index';
 import {createStore, applyMiddleware} from "redux";
-import {composeWithDevTools} from 'redux-devtools-extension'; // 开发环境看state树
+import {composeWithDevTools} from 'redux-devtools-extension'; // 开发环境看state树的插件
 
 
 const store = createStore(reducer, composeWithDevTools(

@@ -3,7 +3,7 @@ import {Route} from 'react-router'
 import FriendList from '../components/chat/friendList'
 import ChatPage from '../components/chat/chatPage'
 import Chat from '../components/chat'
-import {RouterInterface} from "../constants/routeInterFace";
+import {RouterInterface} from "../constants/routeInterface";
 
 export interface Props extends RouterInterface{
     test?: string

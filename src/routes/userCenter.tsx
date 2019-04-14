@@ -3,7 +3,7 @@ import {Route} from 'react-router'
 import UserFunction from '../components/userCenter/userFunction'
 import UserBaseInfo from '../components/userCenter/userBaseInfo'
 import UserCenter from '../components/userCenter'
-import {RouterInterface} from "../constants/routeInterFace";
+import {RouterInterface} from "../constants/routeInterface";
 
 export interface Props extends RouterInterface{
     test?: string

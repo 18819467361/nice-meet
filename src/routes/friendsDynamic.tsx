@@ -4,7 +4,7 @@ import * as React from 'react'
 import DynamicList from '../components/friendsDynamic/dynamicList'
 import PersonalDynamic from '../components/friendsDynamic/personalDynamic'
 import FriendsDynamic from '../components/friendsDynamic'
-import {RouterInterface} from "../constants/routeInterFace";
+import {RouterInterface} from "../constants/routeInterface";
 import {Route} from 'react-router'
 
 export interface Props extends RouterInterface{
