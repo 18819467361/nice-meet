@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './index.css';
 import { TabBar } from 'antd-mobile';
+// import {func} from "prop-types";
 
 export interface Props {
     name?: string;
@@ -37,28 +38,30 @@ class Footer extends React.Component<Props,State> {
             </div>
         );
     }
-    index1(){
-        const {setFooterIndex} = this.props;
-        setFooterIndex( 'blueTab')
-    }
-
-    index2(){
-        const {setFooterIndex} = this.props;
-        setFooterIndex( 'redTab')
-    }
-
-    index3(){
-        const {setFooterIndex} = this.props;
-        setFooterIndex( 'greenTab')
-    }
-
-    index4(){
-        const {setFooterIndex} = this.props;
-        setFooterIndex( 'yellowTab')
-    }
 
     render() {
-        const {footerIndex} = this.props;
+        const {footerIndex,setFooterIndex} = this.props;
+        function index1(){
+            // const {setFooterIndex} = this.props;
+            // setFooterIndex( 'blueTab')
+            setFooterIndex('blueTab')
+        }
+        function index2(){
+            // const {setFooterIndex} = this.props;
+            // setFooterIndex( 'blueTab')
+            setFooterIndex('redTab')
+        }
+        function index3(){
+            // const {setFooterIndex} = this.props;
+            // setFooterIndex( 'blueTab')
+            setFooterIndex('greenTab')
+        }
+        function index4(){
+            // const {setFooterIndex} = this.props;
+            // setFooterIndex( 'blueTab')
+            setFooterIndex('yellowTab')
+        }
+        // console.log(this.props,'propsssss')
         return (
             <div style={{ position: 'fixed', width: '100%', bottom: 0 }}>
                 <TabBar
@@ -86,7 +89,7 @@ class Footer extends React.Component<Props,State> {
                         }
                         selected={footerIndex === 'blueTab'}
                         badge={1}
-                        onPress={this.index1}
+                        onPress={index1}
                         data-seed="logId"
                     />
 
@@ -110,7 +113,7 @@ class Footer extends React.Component<Props,State> {
                         key="Koubei"
                         badge={'new'}
                         selected={footerIndex === 'redTab'}
-                        onPress={this.index2}
+                        onPress={index2}
                         data-seed="logId1"
                     >
                         {this.renderContent('Koubei')}
@@ -134,7 +137,7 @@ class Footer extends React.Component<Props,State> {
                         key="Friend"
                         dot={true}
                         selected={footerIndex === 'greenTab'}
-                        onPress={this.index3}
+                        onPress={index3}
                     >
                         {this.renderContent('Friend')}
                     </TabBar.Item>
@@ -144,7 +147,7 @@ class Footer extends React.Component<Props,State> {
                         title="My"
                         key="my"
                         selected={footerIndex === 'yellowTab'}
-                        onPress={this.index4}
+                        onPress={index4}
                     >
                         {this.renderContent('My')}
                     </TabBar.Item>
