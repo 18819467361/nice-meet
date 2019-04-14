@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Footer from '../components/common/Footer'
+import Footer from '../containers/Footer'
 import {Route} from 'react-router'
 import SeekingFriend from '../components/seekingFriend'
 import Seeking from '../components/seekingFriend/seek'

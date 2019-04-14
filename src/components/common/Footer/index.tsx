@@ -1,20 +1,19 @@
 import * as React from 'react';
 import './index.css';
 import { TabBar } from 'antd-mobile';
-// import * as actions from "../../../actions/footer";
-import {connect} from "react-redux";
+
 export interface Props {
     name?: string;
     footerIndex?:string;
     enthusiasmLevel?: number;
-    setFooterIndex?: () => void;
+    setFooterIndex: (footerIndex:string) => {type:string,footerIndex:string};
 }
 interface State {
     selectedTab?: string;
     hidden?: boolean;
 }
 
-class FooterBar extends React.Component<Props,State> {
+class Footer extends React.Component<Props,State> {
     constructor(props:any) {
         super(props);
         this.state = {
@@ -22,9 +21,10 @@ class FooterBar extends React.Component<Props,State> {
             hidden: false,
         };
     }
-    changePage(){
-        console.log(123)
-    }
+    // changePage(){
+    //     console.log(123)
+    // }
+
 
     renderContent(pageText:any) {
         return (
@@ -37,9 +37,28 @@ class FooterBar extends React.Component<Props,State> {
             </div>
         );
     }
+    index1(){
+        const {setFooterIndex} = this.props;
+        setFooterIndex( 'blueTab')
+    }
+
+    index2(){
+        const {setFooterIndex} = this.props;
+        setFooterIndex( 'redTab')
+    }
+
+    index3(){
+        const {setFooterIndex} = this.props;
+        setFooterIndex( 'greenTab')
+    }
+
+    index4(){
+        const {setFooterIndex} = this.props;
+        setFooterIndex( 'yellowTab')
+    }
 
     render() {
-        // const {setFooterIndex,footerIndex} = this.props;
+        const {footerIndex} = this.props;
         return (
             <div style={{ position: 'fixed', width: '100%', bottom: 0 }}>
                 <TabBar
@@ -65,9 +84,9 @@ class FooterBar extends React.Component<Props,State> {
                             background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
                         />
                         }
-                        selected={this.state.selectedTab === 'blueTab'}
+                        selected={footerIndex === 'blueTab'}
                         badge={1}
-                        onPress={this.changePage}
+                        onPress={this.index1}
                         data-seed="logId"
                     />
 
@@ -90,8 +109,8 @@ class FooterBar extends React.Component<Props,State> {
                         title="Koubei"
                         key="Koubei"
                         badge={'new'}
-                        selected={this.state.selectedTab === 'redTab'}
-                        onPress={this.changePage}
+                        selected={footerIndex === 'redTab'}
+                        onPress={this.index2}
                         data-seed="logId1"
                     >
                         {this.renderContent('Koubei')}
@@ -114,8 +133,8 @@ class FooterBar extends React.Component<Props,State> {
                         title="Friend"
                         key="Friend"
                         dot={true}
-                        selected={this.state.selectedTab === 'greenTab'}
-                        onPress={this.changePage}
+                        selected={footerIndex === 'greenTab'}
+                        onPress={this.index3}
                     >
                         {this.renderContent('Friend')}
                     </TabBar.Item>
@@ -124,8 +143,8 @@ class FooterBar extends React.Component<Props,State> {
                         selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
                         title="My"
                         key="my"
-                        selected={this.state.selectedTab === 'yellowTab'}
-                        onPress={this.changePage}
+                        selected={footerIndex === 'yellowTab'}
+                        onPress={this.index4}
                     >
                         {this.renderContent('My')}
                     </TabBar.Item>
@@ -134,16 +153,7 @@ class FooterBar extends React.Component<Props,State> {
         );
     }
 }
-export function mapStateToProps(store:any) {
-    return {
-        footerIndex:store.footer.footerIndex,
-    }
-}
-export function mapDispatchToProps(dispatch: any) {
-    return {
-        // setFooterIndex: () => dispatch(actions.changeFooterIndex()),
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(FooterBar);
+
+export default Footer;
 
 
