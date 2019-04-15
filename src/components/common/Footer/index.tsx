@@ -1,20 +1,26 @@
 import * as React from 'react';
 import './index.css';
 import { TabBar } from 'antd-mobile';
-// import {func} from "prop-types";
+import { withRouter } from 'react-router-dom' // 解决组件拿不到路由对象的问题
+import {RouterInterface} from "../../../constants/routeInterface";
 
-export interface Props {
+
+// export interface Props{
+export interface Props extends RouterInterface{
     name?: string;
-    footerIndex?:string;
+    footerIndex?: string;
     enthusiasmLevel?: number;
-    setFooterIndex: (footerIndex:string) => {type:string,footerIndex:string};
+    setFooterIndex: (footerIndex: string) => { type: string, footerIndex: string };
+    push: (path: string) => void;
 }
+
 interface State {
     selectedTab?: string;
     hidden?: boolean;
 }
 
 class Footer extends React.Component<Props,State> {
+
     constructor(props:any) {
         super(props);
         this.state = {
@@ -22,9 +28,6 @@ class Footer extends React.Component<Props,State> {
             hidden: false,
         };
     }
-    // changePage(){
-    //     console.log(123)
-    // }
 
 
     renderContent(pageText:any) {
@@ -40,28 +43,24 @@ class Footer extends React.Component<Props,State> {
     }
 
     render() {
-        const {footerIndex,setFooterIndex} = this.props;
+        const {footerIndex,setFooterIndex,history} = this.props;
+
         function index1(){
-            // const {setFooterIndex} = this.props;
-            // setFooterIndex( 'blueTab')
+            history.push('/seekingFriend');
             setFooterIndex('blueTab')
         }
         function index2(){
-            // const {setFooterIndex} = this.props;
-            // setFooterIndex( 'blueTab')
+            history.push('/chat');
             setFooterIndex('redTab')
         }
         function index3(){
-            // const {setFooterIndex} = this.props;
-            // setFooterIndex( 'blueTab')
+            history.push('/friendsDynamic');
             setFooterIndex('greenTab')
         }
         function index4(){
-            // const {setFooterIndex} = this.props;
-            // setFooterIndex( 'blueTab')
+            history.push('/userCenter');
             setFooterIndex('yellowTab')
         }
-        // console.log(this.props,'propsssss')
         return (
             <div style={{ position: 'fixed', width: '100%', bottom: 0 }}>
                 <TabBar
@@ -157,6 +156,6 @@ class Footer extends React.Component<Props,State> {
     }
 }
 
-export default Footer;
+export default withRouter(Footer);
 
 

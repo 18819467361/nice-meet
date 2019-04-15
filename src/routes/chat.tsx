@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Footer from '../containers/Footer'
 import {Route} from 'react-router'
 import FriendList from '../components/chat/friendList'
 import ChatPage from '../components/chat/chatPage'
@@ -19,6 +20,7 @@ class ChatWrapper extends React.Component<Props,any> {
                     <Route path={`${match.url}/friendList`} component={FriendList} />
                     <Route path={`${match.url}/chatPage`} component={ChatPage} />
                 </div>
+                <Footer push={this.props.history.push}/>
             </div>
         );
     }

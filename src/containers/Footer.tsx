@@ -4,6 +4,11 @@ import {connect} from "react-redux";
 export function mapStateToProps(store:any) {
     return {
         footerIndex:store.footer.footerIndex,
+        history: {
+            push: (path:string) => {
+                console.log('path:',path)
+            }
+        }
     }
 }
 export function mapDispatchToProps(dispatch: any) {

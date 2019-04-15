@@ -6,6 +6,8 @@ import PersonalDynamic from '../components/friendsDynamic/personalDynamic'
 import FriendsDynamic from '../components/friendsDynamic'
 import {RouterInterface} from "../constants/routeInterface";
 import {Route} from 'react-router'
+import Footer from '../containers/Footer'
+
 
 export interface Props extends RouterInterface{
     test?: string
@@ -22,6 +24,7 @@ class FriendsDynamicRouter extends React.Component<Props,any> {
                     <Route path={`${match.url}/personalDynamic`} component={PersonalDynamic} />
                     <Route path={`${match.url}/dynamicList`} component={DynamicList} />
                 </div>
+                <Footer push={this.props.history.push}/>
             </div>
         );
     }

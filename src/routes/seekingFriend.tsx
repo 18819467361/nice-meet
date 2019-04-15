@@ -22,7 +22,6 @@ class SeekingFriendWrapper extends React.Component<Props,any> {
                 </div>
                 <Footer/>
             </div>
-
         );
     }
 }

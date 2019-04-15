@@ -7,6 +7,7 @@ const initialState = {
 
 export default function enthusiasm(state=initialState, action: FooterIndexAction) {
     switch (action.type) {
+
         case FOOTER_INDEX:
             return {...state, footerIndex: action.footerIndex};
     }
