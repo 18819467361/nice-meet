@@ -15,7 +15,6 @@ export interface Props extends RouterInterface{
 }
 
 interface State {
-    selectedTab?: string;
     hidden?: boolean;
 }
 
@@ -24,7 +23,6 @@ class Footer extends React.Component<Props,State> {
     constructor(props:any) {
         super(props);
         this.state = {
-            selectedTab: 'blueTab',
             hidden: false,
         };
     }
@@ -42,24 +40,39 @@ class Footer extends React.Component<Props,State> {
         );
     }
 
+    componentWillMount(){
+        const {setFooterIndex,history} = this.props;
+        const path = history.location.pathname;
+        if(path.match('seekingFriend')){
+            setFooterIndex('seekingFriend')
+        }else if (path.match('chat')){
+            setFooterIndex('chat')
+        }else if (path.match('friendsDynamic')){
+            setFooterIndex('friendsDynamic')
+        }else if (path.match('userCenter')){
+            setFooterIndex('userCenter')
+        }
+    }
     render() {
         const {footerIndex,setFooterIndex,history} = this.props;
+        console.log('render!')
 
+        // 跳转页面并设置tab栏的高亮
         function index1(){
             history.push('/seekingFriend');
-            setFooterIndex('blueTab')
+            setFooterIndex('seekingFriend')
         }
         function index2(){
             history.push('/chat');
-            setFooterIndex('redTab')
+            setFooterIndex('chat')
         }
         function index3(){
             history.push('/friendsDynamic');
-            setFooterIndex('greenTab')
+            setFooterIndex('friendsDynamic')
         }
         function index4(){
             history.push('/userCenter');
-            setFooterIndex('yellowTab')
+            setFooterIndex('userCenter')
         }
         return (
             <div style={{ position: 'fixed', width: '100%', bottom: 0 }}>
@@ -86,7 +99,7 @@ class Footer extends React.Component<Props,State> {
                             background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
                         />
                         }
-                        selected={footerIndex === 'blueTab'}
+                        selected={footerIndex === 'seekingFriend'}
                         badge={1}
                         onPress={index1}
                         data-seed="logId"
@@ -111,7 +124,7 @@ class Footer extends React.Component<Props,State> {
                         title="Koubei"
                         key="Koubei"
                         badge={'new'}
-                        selected={footerIndex === 'redTab'}
+                        selected={footerIndex === 'chat'}
                         onPress={index2}
                         data-seed="logId1"
                     >
@@ -135,7 +148,7 @@ class Footer extends React.Component<Props,State> {
                         title="Friend"
                         key="Friend"
                         dot={true}
-                        selected={footerIndex === 'greenTab'}
+                        selected={footerIndex === 'friendsDynamic'}
                         onPress={index3}
                     >
                         {this.renderContent('Friend')}
@@ -145,7 +158,7 @@ class Footer extends React.Component<Props,State> {
                         selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
                         title="My"
                         key="my"
-                        selected={footerIndex === 'yellowTab'}
+                        selected={footerIndex === 'userCenter'}
                         onPress={index4}
                     >
                         {this.renderContent('My')}

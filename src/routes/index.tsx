@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Route, Redirect} from 'react-router'
 import {BrowserRouter, Switch} from 'react-router-dom'
-import Hello from '../containers/Hello';
+// import Hello from '../containers/Hello';
 
 
 import SeekingFriend from './seekingFriend'
@@ -16,7 +16,7 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <Hello/>
+                {/*<Hello/>*/}
                 <div>
                     <Route exact={true} path="/" render={this.redirect}/>
                     <Switch>

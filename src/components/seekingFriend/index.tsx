@@ -1,6 +1,8 @@
 import * as React from 'react';
 import './index.css';
 // import { Button } from 'antd-mobile';
+import { withRouter } from 'react-router-dom' // 解决组件拿不到路由对象的问题
+
 
 
 export interface Props {
@@ -40,6 +42,6 @@ class Hello extends React.Component<Props, State> {// <a,b>定义props的类型�
     }
 }
 
-export default Hello;
+export default withRouter(Hello);
 
 

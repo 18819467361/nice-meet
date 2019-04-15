@@ -4,5 +4,8 @@ export interface RouterInterface {  // 路由相关接口
     };
     history:{
         push:(path:string) => void;
+        location:{
+            pathname:string
+        };
     }
 }

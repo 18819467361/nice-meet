@@ -2,7 +2,7 @@ import {FooterIndexAction} from '../actions/footer';
 import {FOOTER_INDEX} from '../constants';
 
 const initialState = {
-    footerIndex : 'redTab'
+    footerIndex : 'seekingFriend'
 }
 
 export default function enthusiasm(state=initialState, action: FooterIndexAction) {

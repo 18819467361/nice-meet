@@ -6,6 +6,8 @@ import UserCenter from '../components/userCenter'
 import {RouterInterface} from "../constants/routeInterface";
 import Footer from '../containers/Footer'
 
+
+
 export interface Props extends RouterInterface{
     test?: string
 }
