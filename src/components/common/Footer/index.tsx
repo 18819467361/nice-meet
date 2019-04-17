@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom' // 解决组件拿不到路由对�
 import {RouterInterface} from "../../../constants/routeInterface";
 
 
-// export interface Props{
 export interface Props extends RouterInterface{
     name?: string;
     footerIndex?: string;
@@ -21,6 +20,8 @@ interface State {
 class Footer extends React.Component<Props,State> {
 
     constructor(props:any) {
+        console.log("Initial render");
+        console.log("constructor");
         super(props);
         this.state = {
             hidden: false,
@@ -28,21 +29,10 @@ class Footer extends React.Component<Props,State> {
     }
 
 
-    renderContent(pageText:any) {
-        return (
-            <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
-                <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
-                <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
-                >
-                    Click to show/hide tab-bar
-                </a>
-            </div>
-        );
-    }
-
     componentWillMount(){
         const {setFooterIndex,history} = this.props;
         const path = history.location.pathname;
+        console.log('componentWillMount')
         if(path.match('seekingFriend')){
             setFooterIndex('seekingFriend')
         }else if (path.match('chat')){
@@ -52,9 +42,34 @@ class Footer extends React.Component<Props,State> {
         }else if (path.match('userCenter')){
             setFooterIndex('userCenter')
         }
+
     }
+    componentWillReceiveProps(nextProps:Props) {
+        console.log("componentWillReceiveProps");
+        console.log('nextProps',nextProps)
+    }
+
+    shouldComponentUpdate() {
+        console.log("shouldComponentUpdate");
+        return true;        // 记得要返回true
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount");
+    }
+
+    componentDidUpdate() {
+        console.log("componentDidUpdate");
+    }
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount");
+    }
+
+
     render() {
         const {footerIndex,setFooterIndex,history} = this.props;
+        console.log('nowProps', this.props);
         console.log('render!')
 
         // 跳转页面并设置tab栏的高亮
@@ -104,8 +119,6 @@ class Footer extends React.Component<Props,State> {
                         onPress={index1}
                         data-seed="logId"
                     />
-
-
                     <TabBar.Item
                         icon={
                             <div style={{
@@ -127,9 +140,8 @@ class Footer extends React.Component<Props,State> {
                         selected={footerIndex === 'chat'}
                         onPress={index2}
                         data-seed="logId1"
-                    >
-                        {this.renderContent('Koubei')}
-                    </TabBar.Item>
+                    />
+
                     <TabBar.Item
                         icon={
                             <div style={{
@@ -150,9 +162,8 @@ class Footer extends React.Component<Props,State> {
                         dot={true}
                         selected={footerIndex === 'friendsDynamic'}
                         onPress={index3}
-                    >
-                        {this.renderContent('Friend')}
-                    </TabBar.Item>
+                    />
+
                     <TabBar.Item
                         icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
                         selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
@@ -160,9 +171,7 @@ class Footer extends React.Component<Props,State> {
                         key="my"
                         selected={footerIndex === 'userCenter'}
                         onPress={index4}
-                    >
-                        {this.renderContent('My')}
-                    </TabBar.Item>
+                    />
                 </TabBar>
             </div>
         );

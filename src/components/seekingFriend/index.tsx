@@ -18,7 +18,7 @@ interface State {
     selectedMoney?: number;
 }
 
-class Hello extends React.Component<Props, State> {// <a,b>定义props的类型（由父组件传入），b为this.state的接口定义其类型
+class SeekingFriend extends React.Component<Props, State> {// <a,b>定义props的类型（由父组件传入），b为this.state的接口定义其类型
     constructor(props:any) {
         super(props);
         console.log('component props:',props)
@@ -42,6 +42,6 @@ class Hello extends React.Component<Props, State> {// <a,b>定义props的类型�
     }
 }
 
-export default withRouter(Hello);
+export default withRouter(SeekingFriend);
 
 

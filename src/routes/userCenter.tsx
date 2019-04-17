@@ -22,7 +22,7 @@ class UserCenterWrapper extends React.Component<Props,any> {
                     <Route path={`${match.url}/friendList`} component={UserFunction} />
                     <Route path={`${match.url}/userBaseInfo`} component={UserBaseInfo} />
                 </div>
-                <Footer push={this.props.history.push}/>
+                <Footer/>
             </div>
         );
     }

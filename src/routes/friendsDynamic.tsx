@@ -25,7 +25,7 @@ class FriendsDynamicRouter extends React.Component<Props,any> {
                     <Route path={`${match.url}/personalDynamic`} component={PersonalDynamic} />
                     <Route path={`${match.url}/dynamicList`} component={DynamicList} />
                 </div>
-                <Footer push={this.props.history.push}/>
+                <Footer/>
             </div>
         );
     }

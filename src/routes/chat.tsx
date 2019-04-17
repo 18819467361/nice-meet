@@ -20,7 +20,7 @@ class ChatWrapper extends React.Component<Props,any> {
                     <Route path={`${match.url}/friendList`} component={FriendList} />
                     <Route path={`${match.url}/chatPage`} component={ChatPage} />
                 </div>
-                <Footer push={this.props.history.push}/>
+                <Footer/>
             </div>
         );
     }
