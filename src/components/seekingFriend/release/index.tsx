@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './index.css';
+import Location from '../../common/Location'
 // import { Button } from 'antd-mobile';
 // import { Button } from 'antd-mobile';
 
@@ -31,6 +32,7 @@ class Hello extends React.Component<Props, State> {// <a,b>定义props的类型�
         return (
             <div className="hello">
                 制作漂流信物
+                <Location/>
             </div>
         );
     }

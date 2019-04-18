@@ -2,10 +2,13 @@ import * as React from 'react';
 import './index.css';
 // import { Button } from 'antd-mobile';
 import { withRouter } from 'react-router-dom' // 解决组件拿不到路由对象的问题
+import {RouterInterface} from "../../constants/routeInterface";
+import { Link } from 'react-router-dom'
 
 
 
-export interface Props {
+
+export interface Props extends RouterInterface{
     name?: string;
     enthusiasmLevel?: number;
     onIncrement?: () => void;
@@ -28,7 +31,7 @@ class SeekingFriend extends React.Component<Props, State> {// <a,b>定义props�
         };
     }
     render() {
-        // const {name, enthusiasmLevel = 1,onIncrement,onDecrement,onUp,onDown} = this.props;
+        const {match} = this.props;
         // console.log(this.props,'props');
         // if (enthusiasmLevel <= 0) {
         //     throw new Error('You could be a little more enthusiastic. :D');
@@ -37,6 +40,8 @@ class SeekingFriend extends React.Component<Props, State> {// <a,b>定义props�
         return (
             <div className="hello">
               遇见好友父组件
+                <Link to={`${match.url}/seeking`}>寻找好友</Link>
+                <Link to={`${match.url}/release`}>发送漂流瓶</Link>
             </div>
         );
     }

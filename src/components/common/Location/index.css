@@ -1,4 +1,3 @@
-/*@import '~antd/dist/antd.css';*/
 .hello {
     text-align: center;
     margin: 20px;
@@ -9,6 +8,6 @@
 .hello button.haha {
     margin-left: 25px;
     margin-right: 25px;
-    font-size: 40px;
+    font-size: 12px;
     min-width: 50px;
 }
