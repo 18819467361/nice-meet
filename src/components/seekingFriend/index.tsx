@@ -4,8 +4,7 @@ import './index.css';
 import { withRouter } from 'react-router-dom' // 解决组件拿不到路由对象的问题
 import {RouterInterface} from "../../constants/routeInterface";
 import { Link } from 'react-router-dom'
-
-
+import {Button} from "antd-mobile"
 
 
 export interface Props extends RouterInterface{
@@ -39,6 +38,7 @@ class SeekingFriend extends React.Component<Props, State> {// <a,b>定义props�
 
         return (
             <div className="hello">
+                <Button>antdButton</Button>
               遇见好友父组件
                 <Link to={`${match.url}/seeking`}>寻找好友</Link>
                 <Link to={`${match.url}/release`}>发送漂流瓶</Link>
