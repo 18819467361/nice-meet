@@ -3,8 +3,13 @@ import './index.css';
 import { Button } from 'antd-mobile';
 import { withRouter } from 'react-router-dom' // 解决组件拿不到路由对象的问题
 import {RouterInterface} from "../../../constants/routeInterface";
-
-
+// import {func} from "prop-types";
+// import QMap from 'QMap'
+// declare global {
+//     interface window {
+//         qq: any
+//     }
+// }
 export interface Props extends RouterInterface{
     name?: string;
     footerIndex?: string;
@@ -16,35 +21,20 @@ export interface Props extends RouterInterface{
 interface State {
     hidden?: boolean;
     options: any;
-    positionNum: number;
+    geolocation: any;
+    address: any;
 }
 
-
-function loadScript() {
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js";
-    document.body.appendChild(script);
-}
-
-// const qq = window.qq ? window.qq : null;
-// const geolocation = new qq.maps.Geolocation("your key", "myapp");
-let demoDom:any = null;
-let areaDom:any = null;
 class Location extends React.Component<Props,State> {
-
     constructor(props:any) {
-        console.log("Initial render");
-        console.log("constructor");
         super(props);
         this.state = {
             hidden: false,
             options: {timeout: 8000},
-            positionNum: 0
+            geolocation: {},
+            address: '未定位'
         };
     }
-
-
     componentWillMount(){
         console.log("componentWillMount");
 
@@ -59,13 +49,9 @@ class Location extends React.Component<Props,State> {
     }
 
     componentDidMount() {
+        this.setState({geolocation : new (window as any).qq.maps.Geolocation("JEIBZ-3ZE64-2ORUZ-DCGLU-BYN5S-FIFSM", "myapp")});// (window as any)解决TS报错问题})
         console.log("componentDidMount");
-        demoDom = document.getElementById("demo") ? document.getElementById("demo") : null;
-        areaDom = document.getElementById("pos-area") ? document.getElementById("pos-area") : null;
-        loadScript()
-        if(areaDom){
-            areaDom.style.height = (document.body.clientHeight - 110) + 'px';
-        }
+
     }
 
     componentDidUpdate() {
@@ -76,52 +62,42 @@ class Location extends React.Component<Props,State> {
         console.log("componentWillUnmount");
     }
     showPosition(position:any) {
-        if(demoDom){
-            demoDom.innerHTML += "序号：" + this.state.positionNum+1;
-            demoDom.appendChild(document.createElement('pre')).innerHTML = JSON.stringify(position, null, 4);
-        }
-        if(areaDom!=null){
-            areaDom.scrollTop = areaDom.scrollHeight;
-        }
+        console.log('定位成功:',position)
+        this.setState({address:JSON.stringify(position)})
 
-        this.setState({positionNum:this.state.positionNum+1});
     }
 
     showErr() {
-        if(demoDom){
-            demoDom.innerHTML = "序号：" + this.state.positionNum+1;
-            demoDom.appendChild(document.createElement('p')).innerHTML = "定位失败！";
-        }
-        if(areaDom){
-            areaDom.scrollTop = areaDom.scrollHeight;
-        }
-        this.setState({positionNum:this.state.positionNum+1});
+        console.log('定位失败！')
     }
 
     showWatchPosition() {
-        if(demoDom){
-            demoDom.innerHTML += "开始监听位置！<br /><br />";
+        const that:any = this;
+        return () => {
+            that.state.geolocation.watchPosition(that.showPosition.bind(that));
         }
-        if(areaDom){
-            areaDom.scrollTop = areaDom.scrollHeight;
+    }
+    getLocation(){
+        const that:any = this;
+        return () => {
+            that.state.geolocation.getLocation(that.showPosition.bind(that), that.showErr, that.state.options);
         }
-        // geolocation.watchPosition(this.showPosition);
+    }
+    getIpLocation() {
+        const that:any = this;
+        return () => {
+            that.state.geolocation.getIpLocation(that.showPosition.bind(that), that.showErr);
+        }
     }
 
     showClearWatch() {
-        // geolocation.clearWatch();
-        if(demoDom){
-            demoDom.innerHTML += "停止监听位置！<br /><br />";
-        }
-        if(areaDom){
-            areaDom.scrollTop = areaDom.scrollHeight;
+        const that:any = this;
+        return () => {
+            that.state.geolocation.clearWatch();
         }
     }
 
     render() {
-        // const {footerIndex,setFooterIndex,history} = this.props;
-        console.log('nowProps', this.props);
-        console.log('render!')
 
         return (
             <div style={{ width: '100%', height: '60%'}}>
@@ -129,10 +105,11 @@ class Location extends React.Component<Props,State> {
                 <div id="pos-area">
                     <p id="demo">点击下面的按钮，获得对应信息：<br /></p>
                 </div>
-                {/*<Button onClick={geolocation.getLocation(this.showPosition, this.showErr, this.state.options)}>获取精确定位信息</Button>*/}
-                {/*<Button onClick={geolocation.getIpLocation(this.showPosition, this.showErr)}>获取粗糙定位信息</Button>*/}
-                <Button onClick={this.showWatchPosition}>开始监听位置</Button>
-                <Button onClick={this.showClearWatch}>停止监听位置</Button>
+                <div>{this.state.address}</div>
+                <Button onClick={this.getLocation()}>获取精确定位信息</Button>
+                <Button onClick={this.getIpLocation()}>获取粗糙定位信息</Button>
+                <Button onClick={this.showWatchPosition()}>开始监听位置</Button>
+                <Button onClick={this.showClearWatch()}>停止监听位置</Button>
             </div>
         );
     }
